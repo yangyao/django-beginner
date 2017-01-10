@@ -1,0 +1,29 @@
+"""yangyao URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/1.9/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
+Including another URLconf
+    1. Add an import:  from blog import urls as blog_urls
+    2. Import the include() function: from django.conf.urls import url, include
+    3. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
+"""
+from django.conf.urls import url
+from django.contrib import admin
+from blog.views import *
+
+urlpatterns = [
+    url(r'^admin/', admin.site.urls),
+]
+
+urlpatterns += [
+    url(r'^blog/$', get_blog_lists, name='get_blog_lists'),
+    url(r'^blog/detail/(?P<blog_id>\d+)$', get_blog_detail, name='get_blog_detail'),
+    url(r'^comment/(?P<blog_id>\d+)$', blog_add_comment, name='blog_add_comment'),
+]
