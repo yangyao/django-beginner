@@ -3,7 +3,7 @@
     <div id="banner" class="noselect"></div>
 
     <div class="container">
-        <div class="row container-warp">
+        <div class="row">
             <div class="col-lg-9">
                 <div id="category" class="noselect">
                     <div id="category-title">
@@ -11,7 +11,7 @@
                             <li>分类：</li>
                             {% for category in category_list %}
                                 <li class="cat-item"><a
-                                        href="{% url 'blog:category' category.id %}">{{ category.name }}</a>
+                                        href="#">{{ category.name }}</a>
                                 </li>
                             {% endfor %}
                         </ul>
@@ -20,8 +20,6 @@
 
                 <div id="bd" class="wrp clear-fix">
                     <div id="main">
-                     {% load paginate_tags %}
-                     {% paginate article_list 2 %}
                         {% for article in article_list %}
                             <div class="post">
                                 <div class="post-hd">
@@ -33,13 +31,12 @@
                                     <p><a href="" class="more-link"></a></p>
                                 </div>
                                 <div class="post-ft">
-                                    <a href="{% url 'blog:detail' article.pk %}" class="more">阅读全文>></a>
+                                    <a href="#" class="more">阅读全文>></a>
                                     <i class="icon-date"></i>
                                     <span class="date">{{ article.last_modified_time|date:"Y年n月d日" }}</span>
                                 </div>
                             </div>
                         {% endfor %}
-                    {% include 'blog/pagination.html' %}
                     </div>
                 </div>
             </div>
